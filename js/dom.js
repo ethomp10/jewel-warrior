@@ -1,4 +1,4 @@
-jewel.dom = function() {
+match3.dom = function() {
 	
 	function $(path, parent) {
 		parent = parent || document;

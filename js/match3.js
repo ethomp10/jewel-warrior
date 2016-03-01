@@ -1,4 +1,4 @@
-var jewel = (function() {
+var match3 = (function() {
 	var scriptQueue = [],
 		numResourcesLoaded = 0,
 		numResources = 0,
@@ -50,12 +50,12 @@ var jewel = (function() {
 	}
 
 	function setup() {
-		jewel.showScreen("splash-screen");
+		match3.showScreen("splash-screen");
 	}
 
 	// Hide active screen (if any) and show screen with specified ID
 	function showScreen(screenId) {
-		var dom = jewel.dom,
+		var dom = match3.dom,
 			$ = dom.$,
 			activeScreen = $("#game .screen.active")[0],
 			screen = $("#" + screenId)[0];
