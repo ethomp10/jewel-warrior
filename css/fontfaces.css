@@ -2,12 +2,15 @@
 	font-family: "Marker";
 	font-weight: normal;
 	font-style: normal;
-	src: url("../fonts/marker.ttf") format("truetype");
+	src: url("../fonts/marker.woff") format("woff"),
+		url("../fonts/marker.ttf") format("truetype");
+
 }
 
 @font-face {
 	font-family: "Geo";
 	font-weight: normal;
 	font-style: normal;
-	src: url("../fonts/geo.ttf") format("truetype");
+	src: url("../fonts/geo.woff") format("woff"),
+		url("../fonts/geo.ttf") format("truetype");
 }
