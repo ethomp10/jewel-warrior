@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-    <meta charset="UTF-8">
-    <title>Match Three</title>
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/fontfaces.css">
-    <link rel="stylesheet" href="css/match3.css">
-    <!-- JavaScript -->
-    <script src="js/match3.js"></script>
-    <script>
-        window.addEventListener("load", function() {
-            match3.load("js/dom.js", match3.setup);
-        });
-    </script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Match Three</title>
+	<!-- CSS -->
+	<link rel="stylesheet" href="css/fontfaces.css">
+	<link rel="stylesheet" href="css/match3.css">
+	<!-- JavaScript -->
+	<script src="js/match3.js"></script>
+	<script>
+		window.addEventListener("load", function() {
+			match3.load("js/dom.js", match3.setup);
+		});
+	</script>
 </head>
 <body>
-    <div id="game">
-        <div class="screen" id="splash-screen">
-            <h1 class="logo">Match<br>Three</h1><br>
-            <span class="continue">Click to continue</span>
-        </div>
-        <div class="screen" id="main-menu"></div>
-        <div class="screen" id="game-scores"></div>
-        <div class="screen" id="high-scores"></div>
-    </div>
+	<div id="game">
+		<div class="screen" id="splash-screen">
+			<h1 class="logo">Match<br>Three</h1><br>
+			<span class="continue">Click to continue</span>
+		</div>
+		<div class="screen" id="main-menu"></div>
+		<div class="screen" id="game-scores"></div>
+		<div class="screen" id="high-scores"></div>
+	</div>
 </body>
 </html>
