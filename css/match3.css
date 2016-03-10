@@ -7,26 +7,23 @@ body {
 	position: absolute;
 	left: 0;
 	top: 0;
-	width: 320px;
-	height: 480px;
 	font-family: Geo;
 	font-size: 40px;
 	width: 8em;
 	height: 12em;
-	color: rgb(200,200,100);
-	background-color: rgb(60,60,40);
+	color: rgb(200, 200, 100);
+	background-color: rgb(60, 60, 40);
 	background-size: 10px 10px;
 	background-image:
 		linear-gradient(
-			45deg, transparent 0%, rgb(20,20,20) 25%,
-			transparent 50%, rgb(20,20,20) 75%, transparent 100%
+			45deg, transparent 0%, rgb(20, 20, 20) 25%,
+			transparent 50%, rgb(20, 20, 20) 75%, transparent 100%
 		),
 		linear-gradient(
-			-45deg, transparent 0%, rgb(20,20,20) 25%,
-			transparent 50%, rgb(20,20,20) 75%, transparent 100%
+			-45deg, transparent 0%, rgb(20, 20, 20) 25%,
+			transparent 50%, rgb(20, 20, 20) 75%, transparent 100%
 		);
 }
-
 #game .screen {
 	position: absolute;
 	width: 100%;
@@ -34,7 +31,6 @@ body {
 	display: none;
 	z-index: 10;
 }
-
 #game .screen.active {
 	display: block;
 }
@@ -43,7 +39,6 @@ body {
 	text-align: center;
 	padding-top: 2.5em;
 }
-
 #splash-screen .continue {
 	cursor: pointer;
 	font-size: 0.75em;
@@ -56,7 +51,42 @@ body {
 	margin: 0;
 	text-align: center;
 	color: rgb(120,20,20);
-	text-shadow: 0.03em 0.03em 2px rgb(255,255,0),
-		-0.03em -0.03em 2px rgb(255,255,0),
-		0.10em 0.15em 0.15em rgb(0,0,0);
+	text-shadow: 0.03em 0.03em 2px rgb(255, 255, 0),
+		-0.03em -0.03em 2px rgb(255, 255, 0),
+		0.10em 0.15em 0.15em rgb(0, 0, 0);
+}
+
+/* Main menu styles */
+#main-menu {
+	padding-top: 1em;
+}
+
+ul.menu {
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+ul.menu li {
+	margin: 0.8em 0;
+}
+ul.menu li button {
+	font-family: Marker, sans-serif;
+	font-size: 0.6em;
+	color: rgb(100, 120, 0);
+	width: 10em;
+	line-height: 1.2em;
+	background: rgb(10, 20, 0);
+	border: 0.1em solid rgb(255, 255, 0);
+	border-radius: 0.5em;
+	-webkit-box-shadow: 0.2em 0.2em 0.3em rgb(0, 0, 0);
+	-moz-box-shadow: 0.2em 0.2em 0.3em rgb(0, 0, 0);
+	box-shadow: 0.2em 0.2em 0.3em rgb(0, 0, 0);
+}
+ul.menu li button:hover {
+	background: rgb(30, 40, 0);
+}
+ul.menu li button:active {
+	color: rgb(255, 255, 0);
+	background: rgb(30, 40, 0);
 }

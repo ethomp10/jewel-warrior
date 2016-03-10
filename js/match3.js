@@ -59,16 +59,23 @@ var match3 = (function() {
 			$ = dom.$,
 			activeScreen = $("#game .screen.active")[0],
 			screen = $("#" + screenId)[0];
+		if (!match3.screens[screenId]) {
+			alert("This module is not implemented yet!");
+			return;
+		}
 		if (activeScreen) {
 			dom.removeClass(activeScreen, "active");
 		}
 		dom.addClass(screen, "active");
+		// Run screen module
+		match3.screens[screenId].run();
 	}
 
 	// Expose public methods
 	return {
 		load: load,
 		setup: setup,
-		showScreen: showScreen
+		showScreen: showScreen,
+		screens: {}
 	};
 })();

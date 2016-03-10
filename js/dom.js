@@ -17,14 +17,22 @@ match3.dom = function() {
 	}
 
 	function removeClass(el, clsName) {
-		var regex = new RegExp("(^|\\s)" + clsName + "(\\s|$))");
+		var regex = new RegExp("(^|\\s)" + clsName + "(\\s|$)");
 		el.className = el.className.replace(regex, " ");
+	}
+	
+	function bind(element, event, handler) {
+		if (typeof element == "string") {
+			element = $(element)[0];
+		}
+		element.addEventListener(event, handler, false);
 	}
 
 	return {
 		$: $,
 		hasClass: hasClass,
 		addClass: addClass,
-		removeClass: removeClass
+		removeClass: removeClass,
+		bind: bind
 	};
 }();
