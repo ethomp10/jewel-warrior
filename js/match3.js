@@ -78,7 +78,7 @@ var match3 = (function() {
 		});
 		// Hide address bar on Android
 		if (/Android/.test(navigator.userAgent)) {
-			$("html")[0].style.height = "200%";
+			match3.dom.$("html")[0].style.height = "200%";
 			setTimeout(function() {
 				window.scrollTo(0, 1);
 			}, 0);
