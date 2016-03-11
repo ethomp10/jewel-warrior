@@ -49,10 +49,6 @@ var match3 = (function() {
 		image.src = src;
 	}
 
-	function setup() {
-		match3.showScreen("splash-screen");
-	}
-
 	// Hide active screen (if any) and show screen with specified ID
 	function showScreen(screenId) {
 		var dom = match3.dom,
@@ -70,12 +66,36 @@ var match3 = (function() {
 		// Run screen module
 		match3.screens[screenId].run();
 	}
+	
+	function isStandalone() {
+		return (window.navigator.standalone !== false);
+	}
 
+	function setup() {
+		// Disable overscroll
+		match3.dom.bind(document, "touchmove", function(event) {
+			event.preventDefault();
+		});
+		// Hide address bar on Android
+		if (/Android/.test(navigator.userAgent)) {
+			$("html")[0].style.height = "200%";
+			setTimeout(function() {
+				window.scrollTo(0, 1);
+			}, 0);
+		}
+		if (isStandalone()) {
+			showScreen("splash-screen");
+		} else {
+			showScreen("install-screen");
+		}
+	}
+	
 	// Expose public methods
 	return {
 		load: load,
 		setup: setup,
 		showScreen: showScreen,
-		screens: {}
+		screens: {},
+		isStandalone: isStandalone
 	};
 })();
