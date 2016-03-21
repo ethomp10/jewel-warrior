@@ -1,4 +1,11 @@
 var match3 = (function() {
+	var settings = {
+		rows: 8,
+		cols: 8,
+		baseScore: 100,
+		numJewelTypes: 7
+	};
+	
 	var scriptQueue = [],
 		numResourcesLoaded = 0,
 		numResources = 0,
@@ -94,6 +101,7 @@ var match3 = (function() {
 	return {
 		load: load,
 		setup: setup,
+		settings: settings,
 		showScreen: showScreen,
 		screens: {},
 		isStandalone: isStandalone
