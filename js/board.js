@@ -142,7 +142,7 @@ match3.board = (function() {
 	function check(events) {
 		var chains = getChains(), hadChains = false,
 			removed = [], moved = [], gaps = [],
-			score, x, y;
+			score = 0, x, y;
 		
 		for (var x = 0; x < cols; x++) {
 			gaps[x] = 0;
