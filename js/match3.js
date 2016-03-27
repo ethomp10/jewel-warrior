@@ -10,6 +10,11 @@ var match3 = (function() {
 		numResourcesLoaded = 0,
 		numResources = 0,
 		executeRunning = false;
+		
+	function preload(src) {
+		var image = new Image();
+		image.src = src;
+	}
 
 	function executeScriptQueue() {
 		var next = scriptQueue[0], first, script;
@@ -97,13 +102,19 @@ var match3 = (function() {
 		}
 	}
 	
+	function hasWebWorkers() {
+		return ("Worker" in window);
+	}
+	
 	// Expose public methods
 	return {
+		preload: preload,
 		load: load,
 		setup: setup,
 		settings: settings,
 		showScreen: showScreen,
 		screens: {},
-		isStandalone: isStandalone
+		isStandalone: isStandalone,
+		hasWebWorkers: hasWebWorkers
 	};
 })();

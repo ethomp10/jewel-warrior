@@ -29,11 +29,17 @@
 			match3.load("js/dom.js");
 			if (match3.isStandalone()) {
 				match3.load("js/screen.splash.js");
-				match3.load("js/screen.main-menu.js", match3.setup);
+				match3.load("js/screen.main-menu.js");
+				if (match3.hasWebWorkers()) {
+					match3.preload("js/board.worker.js");
+					match3.load("js/board.worker-interface.js",
+								match3.setup);
+				} else {
+					match3.load("js/board.js", match3.setup);
+				}
 			} else {
-				match3.load("js/screen.install.js", match3.setup);
+				match3.load("js/screen.install.js", jewel.setup);
 			}
-			match3.load("js/board.js", match3.setup);
 		});
 	</script>
 </head>
