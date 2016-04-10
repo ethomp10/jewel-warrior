@@ -1,5 +1,5 @@
 match3.display = (function() {
-	var canvas, ctx,
+	var canvas, ctx, cursor,
 		cols, rows,
 		jewels, jewelSize, jewelSprite,
 		firstRun = true;
@@ -29,7 +29,7 @@ match3.display = (function() {
 			setup();
 			jewelSprite = new Image();
 			jewelSprite.addEventListener("load", callback, false);
-			jewelSprite.src = "images/jewels" + jewelSize + ".png";
+			jewelSprite.src = "images/jellies" + jewelSize + ".png";
 			firstRun = false;
 		} else {
 			callback();
@@ -63,6 +63,32 @@ match3.display = (function() {
 		);
 	}
 	
+	function moveJewels(movedJewels, callback) {
+		var n = movedJewels.length,
+			mover, i;
+		for (i = 0; i < n; i++) {
+			mover = movedJewels[i];
+			clearJewel(mover.fromX, mover.fromY);
+		}
+		for (i = 0; i < n; i++) {
+			mover = movedJewels[i];
+			drawJewel(mover.type, mover.toX, mover.toY);
+		}
+		callback();
+	}
+	
+	function removeJewels(removedJewels, callback) {
+		var n = removedJewels.length;
+		for (var i = 0; i < n; i++) {
+			clearJewel(removedJewels[i].x, removedJewels[i].y);
+		}
+		callback();
+	}
+	
+	function clearJewel(x, y) {
+		ctx.clearRect(x * jewelSize, y * jewelSize, jewelSize, jewelSize);
+	}
+	
 	function redraw(newJewels, callback) {
 		var x, y;
 		jewels = newJewels;
@@ -73,10 +99,58 @@ match3.display = (function() {
 			}
 		}
 		callback();
+		renderCursor();
+	}
+	
+	function renderCursor() {
+		if (!cursor) {
+			return;
+		}
+		var x = cursor.x,
+			y = cursor.y;
+		
+		clearCursor();
+		
+		if (cursor.selected) {
+			ctx.save();
+			ctx.globalCompositeOperation = "lighter";
+			ctx.globalAlpha = 0.8;
+			drawJewel(jewels[x][y], x, y);
+			ctx.restore();
+		}
+		ctx.save();
+		ctx.lineWidth = 0.05 * jewelSize;
+		ctx.strokeStyle = "rgba(250, 250, 150, 0.8)";
+		ctx.strokeRect((x + 0.05) * jewelSize, (y + 0.05) * jewelSize,
+			0.9 * jewelSize, 0.9 * jewelSize);
+		ctx.restore();
+	}
+	
+	function clearCursor() {
+		if (cursor) {
+			var x = cursor.x,
+				y = cursor.y;
+			clearJewel(x, y);
+			drawJewel(jewels[x][y], x, y);
+		}
+	}
+	
+	function setCursor(x, y, selected) {
+		clearCursor();
+		if (arguments.length > 0) {
+			cursor = {x: x, y: y, selected: selected};
+		} else {
+			cursor = null;
+		}
+		renderCursor();
 	}
 	
 	return {
 		initialize: initialize,
-		redraw: redraw
+		redraw: redraw,
+		setCursor: setCursor,
+		moveJewels: moveJewels,
+		removeJewels: removeJewels,
+		refill: redraw
 	};
 })();

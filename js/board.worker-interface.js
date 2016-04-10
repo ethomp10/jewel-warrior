@@ -20,12 +20,12 @@ match3.board = (function() {
 	
 	function initialize(callback) {
 		rows = match3.settings.rows;
-        cols = match3.settings.cols;
-        messageCount = 0;
-        callbacks = [];
-        worker = new Worker("js/board.worker.js");
-        match3.dom.bind(worker, "message", messageHandler);
-        post("initialize", match3.settings, callback);
+		cols = match3.settings.cols;
+		messageCount = 0;
+		callbacks = [];
+		worker = new Worker("js/board.worker.js");
+		match3.dom.bind(worker, "message", messageHandler);
+		post("initialize", match3.settings, callback);
 	}
 	
 	function post(command, data, callback) {
