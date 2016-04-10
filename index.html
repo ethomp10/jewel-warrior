@@ -28,17 +28,18 @@
 		window.addEventListener("load", function() {
 			match3.load("js/dom.js");
 			if (match3.isStandalone()) {
-				match3.load("js/screen.splash.js");
+				match3.load("js/screen.splash.js", match3.setup);
 				match3.load("js/screen.main-menu.js");
 				if (match3.hasWebWorkers()) {
 					match3.preload("js/board.worker.js");
-					match3.load("js/board.worker-interface.js",
-								match3.setup);
+					match3.load("js/board.worker-interface.js");
 				} else {
-					match3.load("js/board.js", match3.setup);
+					match3.load("js/board.js");
 				}
+				match3.load("js/screen.game.js");
+				match3.load("js/display.canvas.js");
 			} else {
-				match3.load("js/screen.install.js", jewel.setup);
+				match3.load("js/screen.install.js", match3.setup);
 			}
 		});
 	</script>
@@ -47,6 +48,9 @@
 	<div id="game">
 		<div class="screen" id="splash-screen">
 			<h1 class="logo">Match<br>Three</h1><br>
+			<div class="progress">
+				<div class="indicator"></div>
+			</div><br>
 			<span class="continue">Click to continue</span>
 		</div>
 		<div class="screen" id="install-screen">
@@ -66,6 +70,15 @@
 				<li><button name="exit-screen">Exit</button>
 			</ul>
 		</div>
+		<div class="screen" id="game-screen">
+			<div class="game-board"></div>
+			<footer>
+				<button class="exit">Exit</button>
+				<button class="pause">Pause</button>
+			</footer>
+			<div class="pause-overlay">
+				<div class="pause-text">Pause</div>
+			</div>
 		<div class="screen" id="game-scores"></div>
 		<div class="screen" id="high-scores"></div>
 	</div>

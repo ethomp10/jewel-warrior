@@ -1,5 +1,7 @@
 match3.board = (function() {
 	var worker,
+		rows, cols,
+		jewels,
 		messageCount,
 		callbacks;
 		
@@ -9,12 +11,21 @@ match3.board = (function() {
 		
 		var message = event.data;
 		jewels = message.jewels;
+		
+		if (callbacks[message.id]) {
+			callbacks[message.id](message.data);
+			delete callbacks[message.id];
+		}
 	}
 	
 	function initialize(callback) {
-		messageCount = 0;
-		callbacks = [];
-		worker = new Worker("js/board.worker.js");
+		rows = match3.settings.rows;
+        cols = match3.settings.cols;
+        messageCount = 0;
+        callbacks = [];
+        worker = new Worker("js/board.worker.js");
+        match3.dom.bind(worker, "message", messageHandler);
+        post("initialize", match3.settings, callback);
 	}
 	
 	function post(command, data, callback) {

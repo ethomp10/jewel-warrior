@@ -8,7 +8,7 @@ addEventListener("message", function(event) {
 	
 	switch (message.command) {
 		case "initialize":
-			jewel.settings = message.data;
+			match3.settings = message.data;
 			board.initialize(callback);
 			break;
 		case "swap":

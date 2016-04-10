@@ -106,8 +106,13 @@ var match3 = (function() {
 		return ("Worker" in window);
 	}
 	
+	function getLoadProgress() {
+		return numResourcesLoaded / numResources;
+	}
+	
 	// Expose public methods
 	return {
+		getLoadProgress: getLoadProgress,
 		preload: preload,
 		load: load,
 		setup: setup,
